@@ -15,14 +15,30 @@
 //
 const std = @import("std");
 
-const Insect = union(InsectStat) {
+const Insect = union(enum) {
     flowers_visited: u16,
     still_alive: bool,
 };
 
+const e = error{ a, b };
+
+const MyTaggedUnion = union(enum) { a: u8, b: u8 };
+const MyEnum = enum { a, b };
+
 pub fn main() void {
     var ant = Insect{ .still_alive = true };
     var bee = Insect{ .flowers_visited = 17 };
+
+    var x: ?e!u8 = null;
+
+    x = e.a;
+    x = 1;
+
+    const @"enum": MyEnum = MyEnum.a;
+    std.debug.print("{}", .{@"enum"});
+
+    const my_union: MyTaggedUnion = MyTaggedUnion{ .a = 1 };
+    std.debug.print("{}", .{my_union});
 
     std.debug.print("Insect report! ", .{});
 

@@ -32,12 +32,12 @@ const llamas = [llama_count]u32{ 5, 10, 15, 20, 25 };
 pub fn main() void {
     // We meant to fetch the last llama. Please fix this simple
     // mistake so the assertion no longer fails.
-    const my_llama = getLlama(5);
+    const my_llama = getLlama(4);
 
     print("My llama value is {}.\n", .{my_llama});
 }
 
-fn getLlama(i: usize) u32 {
+inline fn getLlama(comptime i: usize) u32 {
     // We've put a guard assert() at the top of this function to
     // prevent mistakes. The 'comptime' keyword here means that
     // the mistake will be caught when we compile!
@@ -51,6 +51,11 @@ fn getLlama(i: usize) u32 {
     // known at compile time. What can you do with the 'i'
     // parameter above to make this so?
     comptime assert(i < llama_count);
+
+    _ = comptime bar: {
+        const baz = 1 + 2;
+        break :bar baz;
+    };
 
     return llamas[i];
 }

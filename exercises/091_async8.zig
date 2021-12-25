@@ -17,7 +17,7 @@ pub fn main() void {
 
     var frame = async suspendable();
 
-    print("X", .{});
+    print("D", .{});
 
     resume frame;
 
@@ -25,11 +25,11 @@ pub fn main() void {
 }
 
 fn suspendable() void {
-    print("X", .{});
+    print("B", .{});
 
     suspend {
-        print("X", .{});
+        print("C", .{});
     }
 
-    print("X", .{});
+    print("E", .{});
 }

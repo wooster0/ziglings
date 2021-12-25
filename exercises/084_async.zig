@@ -45,13 +45,16 @@
 //
 const print = @import("std").debug.print;
 
+var a: usize = 0;
+
 pub fn main() void {
     // Additional Hint: you can assign things to '_' when you
     // don't intend to do anything with them.
-    foo();
+    _ = async foo();
 }
 
 fn foo() void {
+    a += 1;
     print("foo() A\n", .{});
     suspend {}
     print("foo() B\n", .{});
